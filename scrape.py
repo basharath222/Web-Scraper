@@ -12,10 +12,7 @@ HEADERS = {
 # --- 1. CORE SCRAPING FUNCTION (Replaced Selenium) ---
 
 def scrape_website(website: str) -> str:
-    """
-    Fetches the HTML content of a website using the requests library.
-    This is faster but fails on sites requiring JavaScript execution (like Amazon).
-    """
+    
     print(f"Attempting to fetch URL: {website}")
     
     try:
