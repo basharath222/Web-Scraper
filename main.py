@@ -9,18 +9,16 @@ url = st.text_input("Enter the URL of the webpage to scrape:")
 
 if st.button("Scrape Site"):
     st.info("Scraping the website")
-    try:
-        result = scrape.scrape_website(url)
+
+    result = scrape.scrape_website(url)
         # print(result)
-        body_content = scrape.extract_body_content(result)
-        cleaned_content = scrape.clean_body_content(body_content)
+    body_content = scrape.extract_body_content(result)
+    cleaned_content = scrape.clean_body_content(body_content)
 
-        st.session_state.dom_content = cleaned_content
+    st.session_state.dom_content = cleaned_content
 
-        with st.expander("View DOM Content"):
-            st.text_area("DOM Content",cleaned_content,height=300)
-    except selenium.common.exceptions.WebDriverException as e:
-        st.error(f"Scraping failed! The URL might be inaccessible or invalid.")
+    with st.expander("View DOM Content"):
+        st.text_area("DOM Content",cleaned_content,height=300)
 
 
 if "dom_content" in st.session_state:

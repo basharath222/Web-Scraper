@@ -27,7 +27,7 @@ template = (
 # Initialize Gemini model using the API key from environment
 model = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
-    google_api_key=google_api_key
+    # google_api_key=google_api_key
 )
 
 # Function definition
