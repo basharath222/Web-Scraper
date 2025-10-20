@@ -7,9 +7,9 @@ from langchain_core.prompts import ChatPromptTemplate
 # load_dotenv()
 
 # Get the key from the environment
-google_api_key = os.getenv("gemini_api_Key")
+google_api_key = os.getenv("GOOGLE_API_KEY")
 
-os.environ["gemini_api_Key"] = google_api_key
+os.environ["GOOGLE_API_KEY"] = google_api_key
 
 if not google_api_key:
     raise ValueError("!!!Gemini API key not found! Please check your Streamlit Secrets!!!")
