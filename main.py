@@ -11,6 +11,8 @@ if st.button("Scrape Site"):
     st.info("Scraping the website")
     try:
         result = scrape.scrape_website(url)
+        if not result:
+                st.error("Scraping Failed! This often means the URL is INVALID (typo) or the website immediately blocked the request.")
             # print(result)
         body_content = scrape.extract_body_content(result)
         cleaned_content = scrape.clean_body_content(body_content)
