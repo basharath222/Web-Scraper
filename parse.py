@@ -1,5 +1,5 @@
 import os
-# from dotenv import load_dotenv
+import streamlit as st
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -7,7 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 # load_dotenv()
 
 # Get the key from the environment
-google_api_key = os.getenv("GOOGLE_API_KEY")
+google_api_key = st.secrets["GEMINI_API_KEY"]
 
 os.environ["GOOGLE_API_KEY"] = google_api_key
 
