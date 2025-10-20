@@ -1,16 +1,18 @@
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 
 # load the environment variables from .env
-load_dotenv()
+# load_dotenv()
 
 # Get the key from the environment
-google_api_key = os.getenv("GEMINI_API_KEY")
+google_api_key = os.getenv("gemini_api_Key")
+
+os.environ["gemini_api_Key"] = google_api_key
 
 if not google_api_key:
-    raise ValueError("!!!Gemini API key not found! Please check your .env file.!!!")
+    raise ValueError("!!!Gemini API key not found! Please check your Streamlit Secrets!!!")
 
 # 🔹 Prompt Template
 template = (
