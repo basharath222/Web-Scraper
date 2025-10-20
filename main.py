@@ -1,7 +1,7 @@
 import streamlit as st
 import scrape
 import parse
-import requests,selenium
+import requests
 
 
 st.title("AI Web Scraper")
@@ -9,17 +9,18 @@ url = st.text_input("Enter the URL of the webpage to scrape:")
 
 if st.button("Scrape Site"):
     st.info("Scraping the website")
+    try:
+        result = scrape.scrape_website(url)
+            # print(result)
+        body_content = scrape.extract_body_content(result)
+        cleaned_content = scrape.clean_body_content(body_content)
 
-    result = scrape.scrape_website(url)
-        # print(result)
-    body_content = scrape.extract_body_content(result)
-    cleaned_content = scrape.clean_body_content(body_content)
+        st.session_state.dom_content = cleaned_content
 
-    st.session_state.dom_content = cleaned_content
-
-    with st.expander("View DOM Content"):
-        st.text_area("DOM Content",cleaned_content,height=300)
-
+        with st.expander("View DOM Content"):
+            st.text_area("DOM Content",cleaned_content,height=300)
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error scraping the website: {e}")
 
 if "dom_content" in st.session_state:
     parse_description = st.text_area("Describe what you want to parse?")
