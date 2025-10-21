@@ -16,23 +16,12 @@ if not google_api_key:
 
 # 🔹 Prompt Template
 template = (
-    "**ROLE:** You are an expert **Data Extraction Engine**. Your sole purpose is to process raw web content and deliver structured data with 100% fidelity to the user's instructions. You are extremely strict about output format."
-"\n\n"
-"**INPUT CONTENT:**\n"
-"--- START OF DOCUMENT ---\n"
-"{dom_content}\n"
-"--- END OF DOCUMENT ---\n"
-"\n"
-"**EXTRACTION GOAL:** Extract the exact data points that match this description: {parse_description}."
-"\n\n"
-"**INSTRUCTIONS:**"
-"\n"
-"1.  **Mandatory Compliance:** The output *must* contain **only** the requested data. Do not use markdown (like '```json' or '```text'), quotes, or any surrounding text. 🚫"
-"2.  **Formatting Rule:** If the goal is to extract multiple pieces of data, place **each extracted item on a new line** (delimited by '\\n')."
-"3.  **No Match Rule:** If, and only if, absolutely **no** information matching the description is found in the document, you must return an **empty string** ('') and nothing else. 🤫"
-"4.  **Process (Chain-of-Thought):** Read the document carefully. Filter out irrelevant text. Identify and list the exact data that fulfills the Extraction Goal, ensuring strict adherence to the Formatting Rule."
-"\n\n"
-"**OUTPUT (Direct Data Only):**"
+    "You are tasked with extracting specific information from the following text content: {dom_content}. "
+    "Please follow these instructions carefully:\n\n"
+    "1. **Extract Information:** Only extract the information that directly matches the provided description: {parse_description}.\n"
+    "2. **No Extra Content:** Do not include any additional text, comments, or explanations in your response.\n"
+    "3. **Empty Response:** If no information matches the description, return an empty string ('').\n"
+    "4. **Direct Data Only:** Your output should contain only the data that is explicitly requested, with no other text."
 )
 
 # Initialize Gemini model using the API key from environment
